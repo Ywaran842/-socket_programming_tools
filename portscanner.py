@@ -4,6 +4,7 @@ import socket as s
 from datetime import datetime
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import re
 
  
 def scan(addr_ip, addr_port):
@@ -45,8 +46,14 @@ def runner(scan_type, addr_ip, starting_port = None, ending_port = None):
         finally:
             return
 
+def is_valid_ipv4(ip):
+    pattern = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
+    if re.match(pattern, ip):
+        parts = ip.split(".")
+        return all(0 <= int(part) <= 255 for part in parts)
+    return False
 
-def get_port(prompt):
+def get_valid_port(prompt):
     while True:
         try:
             port = int(input(prompt))
@@ -66,24 +73,23 @@ def display():
     print('-' * 70)
     #Get the addr_ip
     addr_ip = input("Enter the target ip address : ")
-    if not addr_ip:
-        print("Target ip is empty")
+    if not is_valid_ipv4(addr_ip):
+        print("Target ip is wrong")
         return
     print("Scan type " + ':' * 20)
     print("1) AUTO SCAN\n2) TARGET PORT SCAN")
     scan_type = int(input('Select any scan type (ex: 1): '))
+    print('\n')
     if not scan_type:
         return
     if scan_type == 1:
         runner(scan_type, addr_ip)
         return
     elif scan_type == 2:
-        starting_port = int(input('Enter the starting port ex(1): '))
-        if not starting_port:
-            print('Starting port is not metioned')
-            starting_port = int(input('Enter the starting port ex(1): '))
+        starting_port = get_valid_port('Enter the starting port no, EX(1) : ' )
+        ending_port = get_valid_port('Enter the ending port no, EX(300) : ' )
 
-        runner(scan_type, starting_port, ending_port)
+        runner(scan_type, addr_ip, starting_port, ending_port)
         return
 
 
