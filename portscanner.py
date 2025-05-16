@@ -72,14 +72,20 @@ def display():
     banner()
     print('-' * 70)
     #Get the addr_ip
+    
     addr_ip = input("Enter the target ip address : ")
     if not is_valid_ipv4(addr_ip):
         print("Target ip is wrong")
         return
+    
     print("Scan type " + ':' * 20)
     print("1) AUTO SCAN\n2) TARGET PORT SCAN")
-    scan_type = int(input('Select any scan type (ex: 1): '))
-    print('\n')
+    try:
+        scan_type = int(input('Select any scan type (ex: 1): '))
+    except ValueError:
+        print('Wrong selection')
+        return
+    
     if not scan_type:
         return
     if scan_type == 1:
