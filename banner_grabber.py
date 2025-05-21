@@ -97,7 +97,7 @@ def display():
         else:
             print("None of the port is open in this ip {}".format(addr_ip))
         return
-    elif scan_type == 2:
+    elif scan_type == 2:    
         starting_port = get_valid_port('Enter the starting port no, EX(1) : ' )
         ending_port = get_valid_port('Enter the ending port no, EX(300) : ' )
         
