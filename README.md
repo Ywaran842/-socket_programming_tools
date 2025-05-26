@@ -45,6 +45,8 @@ Simple Chat Application
 
 How to Run
 
+-H is optional for both client and server default value is 127.0.0.1
+
 Start the server: python3 chat_application.py -T server -P 7645
 
 Start a client (in another terminal): python3 chat_application.py -T client -P 7645 -N alice
