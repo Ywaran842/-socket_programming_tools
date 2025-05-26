@@ -20,3 +20,6 @@ pip install pyfiglet
 A fast, multi-threaded port scanner written in Python. This tool allows you to scan a target host for open TCP ports using different scanning modes. It uses Python's `ThreadPoolExecutor` for high performance and responsiveness.
 
 Run the Tool
+
+$) python3 portscanner- **Graceful Shutdown:** Handles user-initiated exits and server shutdowns cleanly.
+- **No Connection Required:** Demonstrates UDP’s connectionless nature—clients can send messages without establishing a persistent connection.
