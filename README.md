@@ -4,8 +4,6 @@
 Socket programming tool using Python
 
 
-![Logo](https://academy.selfmade.ninja/assets/brand/logo-text-2.svg)
-
 
 ## Requirements
 
